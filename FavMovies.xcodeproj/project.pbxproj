@@ -7,19 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE173B6628BF761F00A4CBE6 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = BE173B6528BF761F00A4CBE6 /* Realm */; };
+		BE173B6828BF761F00A4CBE6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BE173B6728BF761F00A4CBE6 /* RealmSwift */; };
+		BE173B6D28BF777100A4CBE6 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE173B6C28BF777100A4CBE6 /* MovieModel.swift */; };
+		BE173B6F28BF7C1E00A4CBE6 /* AnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE173B6E28BF7C1E00A4CBE6 /* AnimationDelegate.swift */; };
+		BE173B7228BF8A2C00A4CBE6 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE173B7028BF8A2C00A4CBE6 /* MovieCell.swift */; };
 		BE39347A28BF74E20024D1F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE39347928BF74E20024D1F3 /* AppDelegate.swift */; };
 		BE39347C28BF74E20024D1F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE39347B28BF74E20024D1F3 /* SceneDelegate.swift */; };
-		BE39347E28BF74E20024D1F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE39347D28BF74E20024D1F3 /* ViewController.swift */; };
+		BE39347E28BF74E20024D1F3 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE39347D28BF74E20024D1F3 /* MainVC.swift */; };
 		BE39348128BF74E20024D1F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE39347F28BF74E20024D1F3 /* Main.storyboard */; };
 		BE39348328BF74E30024D1F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE39348228BF74E30024D1F3 /* Assets.xcassets */; };
 		BE39348628BF74E30024D1F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE39348428BF74E30024D1F3 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE173B6C28BF777100A4CBE6 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		BE173B6E28BF7C1E00A4CBE6 /* AnimationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationDelegate.swift; sourceTree = "<group>"; };
+		BE173B7028BF8A2C00A4CBE6 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		BE39347628BF74E20024D1F3 /* FavMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FavMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE39347928BF74E20024D1F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE39347B28BF74E20024D1F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE39347D28BF74E20024D1F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BE39347D28BF74E20024D1F3 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		BE39348028BF74E20024D1F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE39348228BF74E30024D1F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE39348528BF74E30024D1F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -31,12 +39,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE173B6828BF761F00A4CBE6 /* RealmSwift in Frameworks */,
+				BE173B6628BF761F00A4CBE6 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE173B6928BF774400A4CBE6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE39347F28BF74E20024D1F3 /* Main.storyboard */,
+				BE173B7028BF8A2C00A4CBE6 /* MovieCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BE173B6A28BF774C00A4CBE6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BE39347D28BF74E20024D1F3 /* MainVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BE173B6B28BF775E00A4CBE6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BE173B6C28BF777100A4CBE6 /* MovieModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BE39346D28BF74E20024D1F3 = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +91,25 @@
 		BE39347828BF74E20024D1F3 /* FavMovies */ = {
 			isa = PBXGroup;
 			children = (
+				BE39348D28BF74FC0024D1F3 /* Supporting Files */,
+				BE173B6B28BF775E00A4CBE6 /* Model */,
+				BE173B6928BF774400A4CBE6 /* View */,
+				BE173B6A28BF774C00A4CBE6 /* Controller */,
+			);
+			path = FavMovies;
+			sourceTree = "<group>";
+		};
+		BE39348D28BF74FC0024D1F3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				BE39347928BF74E20024D1F3 /* AppDelegate.swift */,
 				BE39347B28BF74E20024D1F3 /* SceneDelegate.swift */,
-				BE39347D28BF74E20024D1F3 /* ViewController.swift */,
-				BE39347F28BF74E20024D1F3 /* Main.storyboard */,
 				BE39348228BF74E30024D1F3 /* Assets.xcassets */,
 				BE39348428BF74E30024D1F3 /* LaunchScreen.storyboard */,
 				BE39348728BF74E30024D1F3 /* Info.plist */,
+				BE173B6E28BF7C1E00A4CBE6 /* AnimationDelegate.swift */,
 			);
-			path = FavMovies;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +128,10 @@
 			dependencies = (
 			);
 			name = FavMovies;
+			packageProductDependencies = (
+				BE173B6528BF761F00A4CBE6 /* Realm */,
+				BE173B6728BF761F00A4CBE6 /* RealmSwift */,
+			);
 			productName = FavMovies;
 			productReference = BE39347628BF74E20024D1F3 /* FavMovies.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +160,9 @@
 				Base,
 			);
 			mainGroup = BE39346D28BF74E20024D1F3;
+			packageReferences = (
+				BE173B6428BF761F00A4CBE6 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = BE39347728BF74E20024D1F3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,8 +190,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE39347E28BF74E20024D1F3 /* ViewController.swift in Sources */,
+				BE173B6D28BF777100A4CBE6 /* MovieModel.swift in Sources */,
+				BE39347E28BF74E20024D1F3 /* MainVC.swift in Sources */,
+				BE173B7228BF8A2C00A4CBE6 /* MovieCell.swift in Sources */,
 				BE39347A28BF74E20024D1F3 /* AppDelegate.swift in Sources */,
+				BE173B6F28BF7C1E00A4CBE6 /* AnimationDelegate.swift in Sources */,
 				BE39347C28BF74E20024D1F3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,12 +344,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9FL5FRNFVL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FavMovies/Info.plist;
+				INFOPLIST_FILE = "FavMovies/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,7 +361,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,12 +374,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9FL5FRNFVL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FavMovies/Info.plist;
+				INFOPLIST_FILE = "FavMovies/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,7 +391,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -358,6 +417,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BE173B6428BF761F00A4CBE6 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BE173B6528BF761F00A4CBE6 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE173B6428BF761F00A4CBE6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		BE173B6728BF761F00A4CBE6 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE173B6428BF761F00A4CBE6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BE39346E28BF74E20024D1F3 /* Project object */;
 }
