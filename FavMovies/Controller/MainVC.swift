@@ -16,8 +16,10 @@ class MainVC: UIViewController {
     @IBOutlet weak var yearTextField: UITextField!
     @IBOutlet weak var warningLabel: UILabel!
     
-    private let realm = try! Realm()
-    private var movies: Results<Movie>?
+    private let realm = try! Realm(configuration: .defaultConfiguration)
+    private lazy var movies: Results<Movie> = {
+        return realm.objects(Movie.self)
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +32,11 @@ class MainVC: UIViewController {
     
     private func sort(sortingIndex: Int) -> Results<Movie> {
         if sortingIndex == 0 {
-            return movies!.sorted(byKeyPath: "year", ascending: false)
+            return movies.sorted(byKeyPath: "year", ascending: false)
         } else if sortingIndex == 1 {
-            return movies!.sorted(byKeyPath: "title", ascending: true)
+            return movies.sorted(byKeyPath: "title", ascending: true)
         } else {
-            return movies!
+            return movies
         }
     }
     
@@ -55,7 +57,10 @@ class MainVC: UIViewController {
     private func save() {
         do {
             try realm.write({
-                guard let title = titleTextField.text, let year = yearTextField.text else {fatalError()}
+                guard let title = titleTextField.text, let year = yearTextField.text else {
+                    Animation.animate(label: warningLabel, newText: "Unexpected error!");
+                    return
+                }
                 guard title != "", year != "" else {
                     Animation.animate(label: warningLabel, newText: "Incorrect info");
                     return
@@ -65,9 +70,13 @@ class MainVC: UIViewController {
                     return
                 }
                 let newMovie = Movie(value: ["title" : title, "year" : yearAsInt])
-                movies?.forEach({ movie in
-                    if movie.title == newMovie.title {
+                movies.forEach({ movie in
+                    if movie.title == newMovie.title && movie.year == newMovie.year {
                         Animation.animate(label: warningLabel, newText: "Movie already added")
+                        return
+                    } else if movies.contains(newMovie) {
+                        Animation.animate(label: warningLabel, newText: "Movie already added")
+                        return
                     } else {
                         realm.add(newMovie)
                     }
@@ -93,15 +102,13 @@ class MainVC: UIViewController {
 extension MainVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard movies?.count != nil else {return 0}
-        return movies!.count
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as? MovieCell {
-            guard movies != nil else {return UITableViewCell()}
-            cell.titleNameLabel.text = movies![indexPath.row].title
-            cell.movieYearLabel.text = String(movies![indexPath.row].year)
+            cell.titleNameLabel.text = movies[indexPath.row].title
+            cell.movieYearLabel.text = String(movies[indexPath.row].year)
             return cell
         } else {
             return UITableViewCell()
@@ -109,9 +116,12 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard movies != nil && movies?.count != 0 else {fatalError()}
+        guard movies.count != 0 else {
+            Animation.animate(label: warningLabel, newText: "Nothing to delete");
+            return
+        }
         if editingStyle == .delete {
-            delete(movieToDelete: movies![indexPath.row])
+            delete(movieToDelete: movies[indexPath.row])
         } else {
             Animation.animate(label: warningLabel, newText: "Nothing to delete")
         }
