@@ -7,7 +7,7 @@
 
 import UIKit
 import RealmSwift
-import SwiftUI
+import Collections
 
 class MainVC: UIViewController {
     
@@ -97,18 +97,15 @@ class MainVC: UIViewController {
                 }
                 if !isUpdated {
                     realm.add(newMovie)
-                    print(7)
                     moviesTable.insertRows(at: [indexPath], with: .fade)
                     moviesTable.endUpdates()
                 }else if isUpdated && movies.count == 0 {
                     realm.add(newMovie)
-                    print(11)
                     moviesTable.insertRows(at: [indexPath], with: .fade)
                     moviesTable.endUpdates()
                 } else {
                     Animation.animate(label: warningLabel, newText: "Unexpected error")
                     realm.cancelWrite()
-                    print(8)
                     return
                 }
             })
