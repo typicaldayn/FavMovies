@@ -8,6 +8,7 @@
 import Foundation
 
 struct MoviesCollectionModel: Hashable {
+    
     var title: String
     var year: Int
 }

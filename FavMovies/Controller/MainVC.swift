@@ -24,29 +24,25 @@ class MainVC: UIViewController {
         warningLabel.alpha = 0
     }
     
-    private func sort(sortingIndex: Int) -> OrderedSet<MoviesCollectionModel> {
-        if sortingIndex == 0 {
-            return OrderedSet(collectionManager.getMovies().sorted {$0.year < $1.year})
-        } else {
-            return OrderedSet(collectionManager.getMovies().sorted {$0.title > $1.title})
-        }
-    }
-    
     @IBAction func sortingChanged(_ sender: UISegmentedControl) {
-        sort(sortingIndex: sender.selectedSegmentIndex)
+        collectionManager.sort(sortIndex: sender.selectedSegmentIndex)
         moviesTable.reloadData()
     }
     
     @IBAction func addMoviePressed(_ sender: UIButton) {
         guard let yearAsInt = Int(yearTextField.text!) else {
-            Animation.animate(label: warningLabel, newText: "Incorrect year");
+            Animation.animate(label: warningLabel, newText: "Incorrect info");
             return
         }
         let newMovie = MoviesCollectionModel(title: titleTextField.text!, year: yearAsInt)
-        collectionManager.save(movie: newMovie, labelToAnimate: warningLabel)
-        let index: IndexPath = [0, collectionManager.getMovies().count]
+        guard !collectionManager.getMovies().contains(newMovie) else {
+            Animation.animate(label: warningLabel, newText: "Movie already added");
+            return
+        }
         moviesTable.beginUpdates()
+        let index: IndexPath = [0, collectionManager.getMovies().count]
         moviesTable.insertRows(at: [index], with: .fade)
+        collectionManager.save(movie: newMovie, labelToAnimate: warningLabel)
         moviesTable.endUpdates()
         titleTextField.text = ""
         yearTextField.text = ""
@@ -62,7 +58,6 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath)
         if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as? MovieCell {
             cell.movieYearLabel.text = String(collectionManager.getMovies()[indexPath.row].year)
             cell.titleNameLabel.text = collectionManager.getMovies()[indexPath.row].title

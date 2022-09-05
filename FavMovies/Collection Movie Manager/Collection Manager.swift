@@ -7,8 +7,8 @@
 
 import Foundation
 import Collections
+import OrderedCollections
 import UIKit
-import SwiftUI
 
 class CollectionManager {
     
@@ -19,11 +19,7 @@ class CollectionManager {
             Animation.animate(label: labelToAnimate, newText: "Wrong info");
             return
         }
-        if movies.contains(movie) {
-            Animation.animate(label: labelToAnimate, newText: "Movie already created")
-        } else {
-            movies.append(movie)
-        }
+        movies.append(movie)
     }
     
     func delete(at index: Int, labelToAnimate: UILabel) {
@@ -37,4 +33,13 @@ class CollectionManager {
     func getMovies() -> OrderedSet<MoviesCollectionModel> {
         return movies
     }
+    
+    func sort(sortIndex: Int = 0) {
+        if sortIndex == 0 {
+            self.movies.sort {$0.year < $1.year}
+        } else {
+            self.movies.sort {$0.title > $1.title}
+        }
+    }
+    
 }
